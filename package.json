@@ -32,14 +32,24 @@
     "onLanguage:yaml"
   ],
   "keywords": [
-    "kubernetes",
-    "kedge",
+    "mason",
     "yaml",
     "autocompletion",
     "validation"
   ],
   "main": "./out/src/extension",
   "contributes": {
+    "commands": [
+      {
+        "command": "extension.masonLogin",
+        "title": "Login to the Mason Platform",
+        "category": "Login",
+        "icon": {
+          "light": "icon/icon-light.png",
+          "dark": "icon/icon128.png"
+        }
+      }
+    ],
     "languages": [
       {
         "id": "yaml",
@@ -49,15 +59,11 @@
         ],
         "extensions": [
           ".yml",
-          ".eyaml",
-          ".eyml",
-          ".yaml"
+          ".yaml",
+          ".myml",
+          ".myaml"
         ],
-        "filenames": [
-          ".clang-format",
-          "_clang-format"
-        ],
-        "firstLine": "^#cloud-config",
+        "firstLine": "^#mason-project",
         "configuration": "./language-configuration.json"
       }
     ],
@@ -82,8 +88,12 @@
         },
         "yaml.schemas": {
           "type": "object",
-          "default": {},
-          "description": "Associate schemas to YAML files in the current workspace"
+          "default": {
+            "./mason.schema.json": [
+              "*"
+            ]
+          },
+          "description": "Associate Mason schemas to YAML files in the current workspace"
         },
         "yaml.format.enable": {
           "type": "boolean",
